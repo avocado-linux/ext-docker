@@ -1,0 +1,22 @@
+supported_targets: '*'
+
+extensions:
+  avocado-ext-docker:
+    version: 2024.1.0
+    release: r0
+    summary: Avocado Docker container engine
+    description: Avocado Docker container engine
+    license: Apache-2.0
+    url: https://github.com/avocadolinux/avocado-os
+    vendor: Avocado Linux <info@avocadolinux.org>
+
+    enable_services:
+      - docker.service
+
+    packages:
+      docker: '*'
+      kernel-module-br-netfilter: '*'
+      kernel-module-bridge: '*'
+
+sdk:
+  image: docker.io/avocadolinux/sdk:{{ env.AVOCADO_DISTRO_RELEASE }}-{{ env.AVOCADO_DISTRO_CHANNEL }}
