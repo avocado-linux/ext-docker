@@ -2,7 +2,7 @@ supported_targets: '*'
 
 extensions:
   avocado-ext-docker:
-    version: 2024.1.0
+    version: 0.1.0
     release: r0
     summary: Avocado Docker container engine
     description: Avocado Docker container engine
