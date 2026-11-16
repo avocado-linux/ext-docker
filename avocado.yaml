@@ -2,19 +2,29 @@ supported_targets: '*'
 
 extensions:
   avocado-ext-docker:
-    version: 0.1.0
+    version: 0.2.0
     release: r0
     summary: Avocado Docker container engine
     description: Avocado Docker container engine
     license: Apache-2.0
-    url: https://github.com/avocadolinux/avocado-os
+    url: https://github.com/avocado-linux/ext-docker
     vendor: Avocado Linux <info@avocadolinux.org>
 
     enable_services:
       - docker.service
 
+    overlay: overlay
+
     packages:
       docker: '*'
+      # Declared explicitly rather than relied on transitively: the minimal
+      # rootfs ships no CA bundle at all, so this extension is the only thing
+      # putting one on the device, and a dependency change in docker would take
+      # public-registry pulls with it.
+      #
+      # The certs alone are not sufficient - see the docker.service drop-in in
+      # overlay/, which generates the bundle they cannot generate themselves.
+      ca-certificates: '*'
       kernel-module-br-netfilter: '*'
       kernel-module-bridge: '*'
 

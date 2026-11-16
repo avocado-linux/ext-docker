@@ -13,6 +13,7 @@ jobs:
       matrix:
         include:
           - { target: qemux86-64, distro-release: "2024", distro-channel: next }
+          - { target: qemux86-64, distro-release: "2026", distro-channel: next }
     uses: avocado-linux/actions/.github/workflows/extension-test.yml@v1
     with:
       target:         ${{ matrix.target }}
