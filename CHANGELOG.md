@@ -12,9 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ca-certificates package is now a declared dependency.
 
 ### Known limitations
-- Containers on the default bridge network need the raw netfilter table module
-  on Docker 28 or newer. It is not yet packaged for every target on the 2024
-  feed, so use host networking on those targets until it is added.
+- On Docker 28 or newer with the iptables backend, containers on bridge
+  networks (the default bridge and user-defined ones) need the kernel to
+  provide the raw netfilter table, because the engine adds a raw PREROUTING
+  rule for each container endpoint. On a target whose kernel lacks it, such
+  containers fail to start; host networking avoids the rule.
 
 ## [0.1.0]
 
